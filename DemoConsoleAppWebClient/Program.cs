@@ -1,6 +1,8 @@
 ﻿using DemoConsoleAppWebClient;
 using DemoConsoleAppWebClient.Models;
+using Microsoft.VisualBasic;
 using System;
+using System.Collections.ObjectModel;
 using System.Net;
 
 class Program
@@ -8,6 +10,7 @@ class Program
     static async Task Main(string[] args)
     {
         WebHelper webHelper = new();
+        DateHelper dateHelper = new();
         WebPage webPage = new WebPage();
         bool validUrl = false;
 
@@ -15,7 +18,7 @@ class Program
         {
             try
             {
-                webPage.Url = GetUrlFromUserInput();
+                webPage.Url = GetUrlFromUserInput(dateHelper);
                 var watch = System.Diagnostics.Stopwatch.StartNew();
                 webPage.HtmlData = await webHelper.RetrieveWebPageByUrlIfUrlIsValid(webPage.Url);
                 watch.Stop();
@@ -40,23 +43,23 @@ class Program
         while (true)
         {
             var actionCode = GetActionFromUser();
-            UserMenu(actionCode, webHelper, webPage);
+            UserMenu(actionCode, webHelper, dateHelper, webPage);
         }
     }
 
-    private static void UserMenu(int actionCode, WebHelper helper, WebPage webPage)
+    private static void UserMenu(int actionCode, WebHelper webHelper, DateHelper dateHelper, WebPage webPage)
     {
 
         switch (actionCode)
         {
             case 1:
-                var symbolsOfCodeCount = helper.GetNumbersOfHtmlSymbols(webPage.HtmlData);
+                var symbolsOfCodeCount = webHelper.GetNumbersOfHtmlSymbols(webPage.HtmlData);
                 Console.WriteLine($"Total number is: {symbolsOfCodeCount}");
                 break;
             case 2:
                 Console.WriteLine("Let me find a tag with specified value! Enter the value to start searching process.");
                 var searchValue = Console.ReadLine();
-                var results = helper.GetTagsFromHtmlWhatContainsValue(searchValue, webPage.HtmlData);
+                var results = webHelper.GetTagsFromHtmlWhatContainsValue(searchValue, webPage.HtmlData);
                 if (results.Count > 0)
                 {
                     Console.WriteLine($"Tags containing '{searchValue}':");
@@ -72,6 +75,12 @@ class Program
                 break;
             case 3:
                 Console.WriteLine($"The total execution time to retrieve data is: {webPage.ElapsedTimeToRetrieve}ms");
+                break;
+            case 4:
+                DateTimeOffset thisTime;
+                thisTime = new DateTimeOffset(dateHelper.GetCurrentDateAndTime(), DateTimeOffset.Now.ToLocalTime().Offset);
+                Console.WriteLine($"Local Date Time in UTC format: {thisTime}");
+                dateHelper.ShowPossibleLocalTimeZones(thisTime);
                 break;
             case 0:
                 actionCode = GetActionFromUser();
@@ -94,6 +103,7 @@ class Program
                 "\n\t 1. Total number of symbols for html code" +
                 "\n\t 2. Find tag by word" +
                 "\n\t 3. Total execution time to parse the page" +
+                "\n\t 4. Local Timezone" +
                 "\n\t " +
                 @"Type ""exit"" if you want to close the application");
 
@@ -117,11 +127,19 @@ class Program
         }
     }
 
-    private static string GetUrlFromUserInput()
+    private static string GetUrlFromUserInput(DateHelper dateHelper)
     {
+        PrintLocalDateAndTime(dateHelper);
         Console.WriteLine("Hey! Lets parse an html code of the web page what you want. Paste here a URL to parse it ----> ");
         var inputUrl = Console.ReadLine();
 
         return inputUrl;
     }
+
+    private static void PrintLocalDateAndTime(DateHelper dateHelper)
+    {
+        Console.WriteLine($"Today is {dateHelper.GetCurrentDateOnly(dateHelper.GetCurrentDateAndTime()).ToLongDateString()}" +
+            $"\nNow is {dateHelper.GetCurrentTimeOnly(dateHelper.GetCurrentDateAndTime()).ToLongTimeString()}\n\n");
+    }
+
 }
