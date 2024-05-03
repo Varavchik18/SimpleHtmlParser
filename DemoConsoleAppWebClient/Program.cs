@@ -1,4 +1,5 @@
 ﻿using DemoConsoleAppWebClient;
+using DemoConsoleAppWebClient.Models;
 using System;
 using System.Net;
 
@@ -7,44 +8,70 @@ class Program
     static async Task Main(string[] args)
     {
         WebHelper webHelper = new();
-        var url = GetUrlFromUserInput();
-        try
+        WebPage webPage = new WebPage();
+        bool validUrl = false;
+
+        while (!validUrl)
         {
-            var htmlData = await webHelper.RetrieveWebPageByUrlIfUrlIsValid(url);
-        }
-        catch (ArgumentException exception)
-        {
-            Console.WriteLine("Url should not be null or empty" +
-            $"{exception.Message}" + $"{exception.Data}");
-        }
-        catch (WebException exception)
-        {
-            Console.WriteLine("Hmmm .... Something is wrong with the URL you provided. Here is some message errors, maybe it will be clear to you what is wrong: " +
-                $"\n\n {exception.Message}" +
-                $"\n {exception.Data}" +
-                $"\n {exception.Status}" +
-                $"\t {exception.Response}");
+            try
+            {
+                webPage.Url = GetUrlFromUserInput();
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                webPage.HtmlData = await webHelper.RetrieveWebPageByUrlIfUrlIsValid(webPage.Url);
+                watch.Stop();
+                webPage.ElapsedTimeToRetrieve = watch.ElapsedMilliseconds;
+                validUrl = true;
+            }
+            catch (ArgumentException exception)
+            {
+                Console.WriteLine("Url should not be null or empty" +
+                $"{exception.Message}" + $"{exception.Data}");
+            }
+            catch (WebException exception)
+            {
+                Console.WriteLine("Hmmm .... Something is wrong with the URL you provided. Here is some message errors, maybe it will be clear to you what is wrong: " +
+                    $"\n\n {exception.Message}" +
+                    $"\n {exception.Data}" +
+                    $"\n {exception.Status}" +
+                    $"\t {exception.Response}");
+            }
         }
 
         while (true)
         {
             var actionCode = GetActionFromUser();
-            UserMenu(actionCode);
+            UserMenu(actionCode, webHelper, webPage);
         }
     }
 
-    private static void UserMenu(int actionCode)
+    private static void UserMenu(int actionCode, WebHelper helper, WebPage webPage)
     {
+
         switch (actionCode)
         {
             case 1:
-                Console.WriteLine($"Total number is: {100}");
+                var symbolsOfCodeCount = helper.GetNumbersOfHtmlSymbols(webPage.HtmlData);
+                Console.WriteLine($"Total number is: {symbolsOfCodeCount}");
                 break;
             case 2:
-                Console.WriteLine($"The tag is: {120}");
+                Console.WriteLine("Let me find a tag with specified value! Enter the value to start searching process.");
+                var searchValue = Console.ReadLine();
+                var results = helper.GetTagsFromHtmlWhatContainsValue(searchValue, webPage.HtmlData);
+                if (results.Count > 0)
+                {
+                    Console.WriteLine($"Tags containing '{searchValue}':");
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {results[i]}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Value '{searchValue}' not found within any tag.");
+                }
                 break;
             case 3:
-                Console.WriteLine($"The total execution time to retrieve data is: {123}ms");
+                Console.WriteLine($"The total execution time to retrieve data is: {webPage.ElapsedTimeToRetrieve}ms");
                 break;
             case 0:
                 actionCode = GetActionFromUser();
@@ -56,13 +83,14 @@ class Program
                 Console.WriteLine("Enter the correct value what is present in the list");
                 break;
         }
+
     }
 
     private static int GetActionFromUser()
     {
         try
         {
-            Console.WriteLine("Okay, tell me what kind of information you want me to tell about that page." +
+            Console.WriteLine("\nOkay, tell me what kind of information you want me to tell about that page." +
                 "\n\t 1. Total number of symbols for html code" +
                 "\n\t 2. Find tag by word" +
                 "\n\t 3. Total execution time to parse the page" +
