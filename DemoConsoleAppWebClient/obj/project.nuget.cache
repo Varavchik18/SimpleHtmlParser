@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1P05rmaZtjlgUhrAm3wgd36msCtKdB3vtfm7IGAgaCpeJa1CQKUEaz2TeuZknlIzJrfsQA3b4qtgOWK9ARhZcw==",
+  "dgSpecHash": "0V4LVbxm/ib2Phr/0csM0RC7hjuhSYjQP42bbu8Tn4lhFIjRuwtngCP8tOnSmaSZA+vxHUKlQaqcrpX8xPGmYQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pasha\\source\\repos\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient.csproj",
+  "projectFilePath": "C:\\Users\\pasha\\source\\repos\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient\\ConsoleAppWebClient.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

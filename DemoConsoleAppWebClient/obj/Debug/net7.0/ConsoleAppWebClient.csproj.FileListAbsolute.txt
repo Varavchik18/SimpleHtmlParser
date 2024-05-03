@@ -1,0 +1,15 @@
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\bin\Debug\net7.0\ConsoleAppWebClient.exe
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\bin\Debug\net7.0\ConsoleAppWebClient.deps.json
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\bin\Debug\net7.0\ConsoleAppWebClient.runtimeconfig.json
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\bin\Debug\net7.0\ConsoleAppWebClient.dll
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\bin\Debug\net7.0\ConsoleAppWebClient.pdb
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.csproj.AssemblyReference.cache
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.AssemblyInfoInputs.cache
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.AssemblyInfo.cs
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.csproj.CoreCompileInputs.cache
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.dll
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\refint\ConsoleAppWebClient.dll
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.pdb
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ConsoleAppWebClient.genruntimeconfig.cache
+C:\Users\pasha\source\repos\DemoConsoleAppWebClient\DemoConsoleAppWebClient\obj\Debug\net7.0\ref\ConsoleAppWebClient.dll

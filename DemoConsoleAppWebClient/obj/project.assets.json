@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pasha\\source\\repos\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient.csproj",
-      "projectName": "DemoConsoleAppWebClient",
-      "projectPath": "C:\\Users\\pasha\\source\\repos\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient.csproj",
+      "projectUniqueName": "C:\\Users\\pasha\\source\\repos\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient\\ConsoleAppWebClient.csproj",
+      "projectName": "ConsoleAppWebClient",
+      "projectPath": "C:\\Users\\pasha\\source\\repos\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient\\ConsoleAppWebClient.csproj",
       "packagesPath": "C:\\Users\\pasha\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\pasha\\source\\repos\\DemoConsoleAppWebClient\\DemoConsoleAppWebClient\\obj\\",
       "projectStyle": "PackageReference",
